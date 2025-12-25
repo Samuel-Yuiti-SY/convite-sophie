@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convite de 15 Anos - Sophie</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(#fde4ec, #f9c5d1);
+  overflow-x: hidden;
+  color: #7a3b4d;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#envelope {
+  width: 280px;
+  height: 180px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0,0,0,.2);
+  cursor: pointer;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+#fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+#invite {
+  display: none;
+  padding: 30px;
+  max-width: 500px;
+  margin: auto;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.2);
+}
+
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 52px;
+  color: #d96c8c;
+}
+
+.button {
+  margin: 10px;
+  padding: 12px 20px;
+  background: #d96c8c;
+  color: #fff;
+  border-radius: 30px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.section {
+  margin-top: 25px;
+}
+
+ul {
+  text-align: left;
+  padding-left: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="center" style="height:100vh" id="start">
+  <div id="envelope">Clique para abrir</div>
+</div>
+
+<canvas id="fireworks"></canvas>
+
+<div id="invite">
+  <h1>Meus 15 Anos</h1>
+  <p>Venha comemorar com a Sophie</p>
+
+  <p><strong>14 de fevereiro de 2026</strong><br>11h</p>
+
+  <p>
+    R. Pioneiro Mário Manganoti<br>
+    480<br>
+    Parque das Grevileas, Maringá PR
+  </p>
+
+  <div class="section">
+    <a class="button" href="https://maps.google.com/?q=R.+Pioneiro+Mário+Manganoti,+480,+Maringá+PR" target="_blank">Ver localização</a>
+    <a class="button" href="https://wa.me/" target="_blank">WhatsApp</a>
+  </div>
+
+  <div class="section">
+    <h3>Sugestões de presentes</h3>
+    <ul>
+      <li>Roupas: Blusas M, Vestidos M, Parte de baixo 36</li>
+      <li>Sapatos: 35</li>
+      <li>Acessórios: Colares, pulseiras, anéis, bolsas</li>
+      <li>Perfumes e hidratantes (fragrâncias doces)</li>
+      <li>Produtos capilares e para unhas</li>
+      <li>Pix ou dinheiro (opcional)</li>
+      <li>Obs: não sou muito chegada em maquiagem 💕</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+const envelope = document.getElementById('envelope');
+const start = document.getElementById('start');
+const invite = document.getElementById('invite');
+const fireworks = document.getElementById('fireworks');
+const ctx = fireworks.getContext('2d');
+
+fireworks.width = window.innerWidth;
+fireworks.height = window.innerHeight;
+
+envelope.onclick = () => {
+  start.style.display = 'none';
+  fireworks.style.display = 'block';
+  launchFireworks();
+  setTimeout(() => {
+    fireworks.style.display = 'none';
+    invite.style.display = 'block';
+  }, 2500);
+};
+
+function launchFireworks() {
+  for (let i = 0; i < 200; i++) {
+    ctx.fillStyle = `hsl(${Math.random()*360},100%,70%)`;
+    ctx.beginPath();
+    ctx.arc(Math.random()*fireworks.width, Math.random()*fireworks.height, 3, 0, Math.PI*2);
+    ctx.fill();
+  }
+}
+</script>
+
+</body>
+</html>
