@@ -1,159 +1,248 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Convite de 15 Anos - Sophie</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meus 15 Anos – Sophie</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(180deg, #fde6ef, #f8cdda);
+      color: #7a3b5e;
+      overflow-x: hidden;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    .center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
 
-<style>
-body {
-  margin: 0;
-  font-family: 'Playfair Display', serif;
-  background: linear-gradient(#fde4ec, #f9c5d1);
-  overflow-x: hidden;
-  color: #7a3b4d;
-}
+    .hidden { display: none; }
 
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+    /* Tela convite */
+    #envelope {
+      cursor: pointer;
+      animation: pulse 2s infinite;
+    }
 
-#envelope {
-  width: 280px;
-  height: 180px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 15px 30px rgba(0,0,0,.2);
-  cursor: pointer;
-  animation: float 4s ease-in-out infinite;
-}
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
 
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0); }
-}
+    /* Fogos */
+    #fireworks {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 192, 203, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
 
-#fireworks {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  width: 100%;
-  height: 100%;
-  display: none;
-}
+    #fireworks img {
+      width: 300px;
+    }
 
-#invite {
-  display: none;
-  padding: 30px;
-  max-width: 500px;
-  margin: auto;
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,.2);
-}
+    /* Layout principal */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background: rgba(255,255,255,0.7);
+      padding: 15px;
+      position: sticky;
+      top: 0;
+    }
 
-h1 {
-  font-family: 'Great Vibes', cursive;
-  font-size: 52px;
-  color: #d96c8c;
-}
+    nav button {
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      color: #7a3b5e;
+      font-weight: bold;
+    }
 
-.button {
-  margin: 10px;
-  padding: 12px 20px;
-  background: #d96c8c;
-  color: #fff;
-  border-radius: 30px;
-  text-decoration: none;
-  display: inline-block;
-}
+    section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
 
-.section {
-  margin-top: 25px;
-}
+    .card {
+      background: rgba(255,255,255,0.85);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
 
-ul {
-  text-align: left;
-  padding-left: 20px;
-}
-</style>
+    h1, h2 {
+      font-family: 'Cursive', serif;
+    }
+
+    /* Lista presentes */
+    .gifts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+    }
+
+    .gift {
+      border: 2px solid #f3b6cc;
+      border-radius: 15px;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .gift.selected {
+      opacity: 0.4;
+    }
+
+    textarea, input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    button.primary {
+      background: #e88bb0;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="center" style="height:100vh" id="start">
-  <div id="envelope">Clique para abrir</div>
-</div>
-
-<canvas id="fireworks"></canvas>
-
-<div id="invite">
-  <h1>Meus 15 Anos</h1>
-  <p>Venha comemorar com a Sophie</p>
-
-  <p><strong>14 de fevereiro de 2026</strong><br>11h</p>
-
-  <p>
-    R. Pioneiro Mário Manganoti<br>
-    480<br>
-    Parque das Grevileas, Maringá PR
-  </p>
-
-  <div class="section">
-    <a class="button" href="https://maps.google.com/?q=R.+Pioneiro+Mário+Manganoti,+480,+Maringá+PR" target="_blank">Ver localização</a>
-    <a class="button" href="https://wa.me/" target="_blank">WhatsApp</a>
+  <!-- Tela inicial -->
+  <div id="start" class="center">
+    <div>
+      <h2>Você recebeu um convite especial</h2>
+      <img id="envelope" src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" width="200" />
+      <p>Clique para abrir</p>
+    </div>
   </div>
 
-  <div class="section">
-    <h3>Sugestões de presentes</h3>
-    <ul>
-      <li>Roupas: Blusas M, Vestidos M, Parte de baixo 36</li>
-      <li>Sapatos: 35</li>
-      <li>Acessórios: Colares, pulseiras, anéis, bolsas</li>
-      <li>Perfumes e hidratantes (fragrâncias doces)</li>
-      <li>Produtos capilares e para unhas</li>
-      <li>Pix ou dinheiro (opcional)</li>
-      <li>Obs: não sou muito chegada em maquiagem 💕</li>
-    </ul>
+  <!-- Fogos -->
+  <div id="fireworks" class="hidden">
+    <img src="https://i.makeagif.com/media/1-01-2015/KF7Fl2.gif" />
   </div>
-</div>
+
+  <!-- Conteúdo -->
+  <div id="content" class="hidden">
+    <nav>
+      <button onclick="show('convite')">Convite</button>
+      <button onclick="show('endereco')">Endereço</button>
+      <button onclick="show('recados')">Recados</button>
+      <button onclick="show('presentes')">Presentes</button>
+    </nav>
+
+    <section id="convite">
+      <div class="card">
+        <h1>Meus 15 Anos</h1>
+        <h2>Sophie</h2>
+        <p>Sábado | 14.02.2026 | 11:00h</p>
+        <p>R. Pioneiro Mário Manganoti, 480<br>Parque das Grevíleas – Maringá/PR</p>
+        <p><em>Sua presença é muito importante!</em></p>
+      </div>
+    </section>
+
+    <section id="endereco" class="hidden">
+      <div class="card">
+        <h2>Confirmação de Presença</h2>
+        <input id="nomeConfirm" placeholder="Seu nome" />
+        <input id="qtdConfirm" type="number" placeholder="Quantidade de pessoas" />
+        <button class="primary" onclick="confirmar()">Confirmar Presença</button>
+      </div>
+    </section>
+
+    <section id="recados" class="hidden">
+      <div class="card">
+        <h2>Deixe seu recado 💌</h2>
+        <input id="nomeRecado" placeholder="Seu nome" />
+        <textarea id="msgRecado" placeholder="Mensagem (emoji liberado 😊)"></textarea>
+        <button class="primary" onclick="salvarRecado()">Salvar</button>
+        <div id="meuRecado"></div>
+      </div>
+    </section>
+
+    <section id="presentes" class="hidden">
+      <div class="card">
+        <h2>Lista de Presentes 🎁</h2>
+        <div class="gifts" id="gifts"></div>
+      </div>
+    </section>
+
+    <footer>Convite virtual – Sophie 💖</footer>
+  </div>
 
 <script>
-const envelope = document.getElementById('envelope');
-const start = document.getElementById('start');
-const invite = document.getElementById('invite');
-const fireworks = document.getElementById('fireworks');
-const ctx = fireworks.getContext('2d');
+  const gifts = ['Perfume', 'Bolsa', 'Sapato', 'Relógio', 'Maquiagem'];
 
-fireworks.width = window.innerWidth;
-fireworks.height = window.innerHeight;
+  const start = document.getElementById('start');
+  const fireworks = document.getElementById('fireworks');
+  const content = document.getElementById('content');
 
-envelope.onclick = () => {
-  start.style.display = 'none';
-  fireworks.style.display = 'block';
-  launchFireworks();
-  setTimeout(() => {
-    fireworks.style.display = 'none';
-    invite.style.display = 'block';
-  }, 2500);
-};
+  document.getElementById('envelope').onclick = () => {
+    start.classList.add('hidden');
+    fireworks.classList.remove('hidden');
+    setTimeout(() => {
+      fireworks.classList.add('hidden');
+      content.classList.remove('hidden');
+    }, 3000);
+  };
 
-function launchFireworks() {
-  for (let i = 0; i < 200; i++) {
-    ctx.fillStyle = `hsl(${Math.random()*360},100%,70%)`;
-    ctx.beginPath();
-    ctx.arc(Math.random()*fireworks.width, Math.random()*fireworks.height, 3, 0, Math.PI*2);
-    ctx.fill();
+  function show(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
   }
-}
-</script>
 
+  function salvarRecado() {
+    const nome = nomeRecado.value;
+    const msg = msgRecado.value;
+    localStorage.setItem('recado', JSON.stringify({ nome, msg }));
+    renderRecado();
+  }
+
+  function renderRecado() {
+    const r = JSON.parse(localStorage.getItem('recado'));
+    if (r) meuRecado.innerHTML = `<p><strong>${r.nome}</strong>: ${r.msg}</p>`;
+  }
+
+  function confirmar() {
+    alert('Presença confirmada! 💖');
+  }
+
+  function renderGifts() {
+    gifts.forEach(g => {
+      const div = document.createElement('div');
+      div.className = 'gift';
+      div.innerText = g;
+      div.onclick = () => div.classList.add('selected');
+      document.getElementById('gifts').appendChild(div);
+    });
+  }
+
+  renderRecado();
+  renderGifts();
+</script>
 </body>
 </html>
