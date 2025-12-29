@@ -2,247 +2,249 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
+  <title>Convite 15 Anos - Sophie</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Meus 15 Anos – Sophie</title>
+
+  <!-- FONTES -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: 'Georgia', serif;
-      background: linear-gradient(180deg, #fde6ef, #f8cdda);
-      color: #7a3b5e;
-      overflow-x: hidden;
+      font-family: 'Playfair Display', serif;
+      background: #f9d9e5;
+      color: #6b2c3e;
     }
 
-    .center {
+    header {
+      background: #f3b6cc;
+      padding: 12px;
       display: flex;
-      align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-    }
-
-    .hidden { display: none; }
-
-    /* Tela convite */
-    #envelope {
-      cursor: pointer;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
-    /* Fogos */
-    #fireworks {
-      position: fixed;
-      inset: 0;
-      background: rgba(255, 192, 203, 0.95);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      gap: 10px;
+      position: sticky;
+      top: 0;
       z-index: 10;
     }
 
-    #fireworks img {
-      width: 300px;
-    }
-
-    /* Layout principal */
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      background: rgba(255,255,255,0.7);
-      padding: 15px;
-      position: sticky;
-      top: 0;
-    }
-
-    nav button {
-      background: none;
+    header button {
       border: none;
-      font-size: 16px;
+      background: #fff;
+      color: #6b2c3e;
+      padding: 8px 14px;
+      border-radius: 20px;
       cursor: pointer;
-      color: #7a3b5e;
-      font-weight: bold;
+      font-weight: 600;
     }
 
     section {
-      padding: 40px 20px;
+      display: none;
+      padding: 30px 20px;
       max-width: 900px;
       margin: auto;
     }
 
-    .card {
-      background: rgba(255,255,255,0.85);
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
+    section.active { display: block; }
 
     h1, h2 {
-      font-family: 'Cursive', serif;
+      text-align: center;
     }
 
-    /* Lista presentes */
-    .gifts {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 20px;
+    .envelope {
+      text-align: center;
+      margin-top: 40px;
     }
 
-    .gift {
-      border: 2px solid #f3b6cc;
-      border-radius: 15px;
-      padding: 10px;
+    .envelope img {
+      width: 220px;
       cursor: pointer;
     }
 
-    .gift.selected {
-      opacity: 0.4;
+    .fogos {
+      display: none;
+      text-align: center;
     }
 
-    textarea, input {
+    .fogos img {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .convite {
+      background: #fff;
+      padding: 25px;
+      border-radius: 20px;
+      margin-top: 20px;
+      text-align: center;
+      display: none;
+    }
+
+    .convite h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 52px;
+      color: #d45c85;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+
+    input, textarea {
       width: 100%;
       padding: 10px;
-      margin-top: 10px;
+      margin: 8px 0;
       border-radius: 10px;
       border: 1px solid #ccc;
     }
 
     button.primary {
-      background: #e88bb0;
+      background: #d45c85;
+      color: #fff;
       border: none;
-      color: white;
       padding: 10px 20px;
       border-radius: 20px;
       cursor: pointer;
-      margin-top: 10px;
     }
 
-    footer {
-      text-align: center;
+    .gift {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .gift img {
+      width: 60px;
+      border-radius: 10px;
+    }
+
+    .gift.selected { opacity: 0.5; }
+
+    .admin {
+      background: #fff;
       padding: 20px;
-      font-size: 14px;
+      border-radius: 15px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Tela inicial -->
-  <div id="start" class="center">
-    <div>
-      <h2>Você recebeu um convite especial</h2>
-      <img id="envelope" src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" width="200" />
-      <p>Clique para abrir</p>
+<header>
+  <button onclick="show('inicio')">Convite</button>
+  <button onclick="show('endereco')">Endereço</button>
+  <button onclick="show('recados')">Recados</button>
+  <button onclick="show('presentes')">Presentes</button>
+</header>
+
+<section id="inicio" class="active">
+  <div class="envelope">
+    <!-- GIF LOCAL (evita 404) -->
+    <img src="envelope.gif" alt="Abrir convite" onclick="abrirConvite()">
+    <p>Clique para abrir o convite 💌</p>
+  </div>
+
+  <div class="fogos" id="fogos">
+    <img src="fogos.gif" alt="Fogos de artifício">
+  </div>
+
+  <div class="convite" id="convite">
+    <h1>Meus 15 Anos</h1>
+    <h2>Sophie</h2>
+    <p><strong>Sábado | 14.02.2026 | 11:00h</strong></p>
+    <p>Rua Pioneiro Mário Manganoti, 480<br>Parque das Grevíleas - Maringá/PR</p>
+    <p>🌸 Sua presença é muito importante 🌸</p>
+  </div>
+</section>
+
+<section id="endereco">
+  <div class="card">
+    <h2>Confirmar Presença</h2>
+    <input id="nomeConfirmacao" placeholder="Seu nome">
+    <button class="primary" onclick="confirmar()">Confirmar</button>
+  </div>
+</section>
+
+<section id="recados">
+  <div class="card">
+    <h2>Deixe um recado 💖</h2>
+    <input id="nomeRecado" placeholder="Seu nome">
+    <textarea id="msgRecado" placeholder="Mensagem"></textarea>
+    <button class="primary" onclick="salvarRecado()">Salvar</button>
+    <p id="recadoSalvo"></p>
+  </div>
+</section>
+
+<section id="presentes">
+  <div class="card">
+    <h2>Lista de Presentes 🎁</h2>
+    <div class="gift" onclick="selecionar(this)">
+      <img src="https://cdn-icons-png.flaticon.com/512/2920/2920268.png">
+      <span>Perfume</span>
+    </div>
+    <div class="gift" onclick="selecionar(this)">
+      <img src="https://cdn-icons-png.flaticon.com/512/3524/3524334.png">
+      <span>Bolsa</span>
     </div>
   </div>
+</section>
 
-  <!-- Fogos -->
-  <div id="fireworks" class="hidden">
-    <img src="https://i.makeagif.com/media/1-01-2015/KF7Fl2.gif" />
+<!-- TELA OCULTA ADMIN -->
+<section id="admin">
+  <div class="admin">
+    <h2>Confirmados</h2>
+    <ul id="listaConfirmados"></ul>
   </div>
-
-  <!-- Conteúdo -->
-  <div id="content" class="hidden">
-    <nav>
-      <button onclick="show('convite')">Convite</button>
-      <button onclick="show('endereco')">Endereço</button>
-      <button onclick="show('recados')">Recados</button>
-      <button onclick="show('presentes')">Presentes</button>
-    </nav>
-
-    <section id="convite">
-      <div class="card">
-        <h1>Meus 15 Anos</h1>
-        <h2>Sophie</h2>
-        <p>Sábado | 14.02.2026 | 11:00h</p>
-        <p>R. Pioneiro Mário Manganoti, 480<br>Parque das Grevíleas – Maringá/PR</p>
-        <p><em>Sua presença é muito importante!</em></p>
-      </div>
-    </section>
-
-    <section id="endereco" class="hidden">
-      <div class="card">
-        <h2>Confirmação de Presença</h2>
-        <input id="nomeConfirm" placeholder="Seu nome" />
-        <input id="qtdConfirm" type="number" placeholder="Quantidade de pessoas" />
-        <button class="primary" onclick="confirmar()">Confirmar Presença</button>
-      </div>
-    </section>
-
-    <section id="recados" class="hidden">
-      <div class="card">
-        <h2>Deixe seu recado 💌</h2>
-        <input id="nomeRecado" placeholder="Seu nome" />
-        <textarea id="msgRecado" placeholder="Mensagem (emoji liberado 😊)"></textarea>
-        <button class="primary" onclick="salvarRecado()">Salvar</button>
-        <div id="meuRecado"></div>
-      </div>
-    </section>
-
-    <section id="presentes" class="hidden">
-      <div class="card">
-        <h2>Lista de Presentes 🎁</h2>
-        <div class="gifts" id="gifts"></div>
-      </div>
-    </section>
-
-    <footer>Convite virtual – Sophie 💖</footer>
-  </div>
+</section>
 
 <script>
-  const gifts = ['Perfume', 'Bolsa', 'Sapato', 'Relógio', 'Maquiagem'];
-
-  const start = document.getElementById('start');
-  const fireworks = document.getElementById('fireworks');
-  const content = document.getElementById('content');
-
-  document.getElementById('envelope').onclick = () => {
-    start.classList.add('hidden');
-    fireworks.classList.remove('hidden');
-    setTimeout(() => {
-      fireworks.classList.add('hidden');
-      content.classList.remove('hidden');
-    }, 3000);
-  };
-
   function show(id) {
-    document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
-    document.getElementById(id).classList.remove('hidden');
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function abrirConvite() {
+    document.getElementById('fogos').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('convite').style.display = 'block';
+    }, 2000);
+  }
+
+  function confirmar() {
+    const nome = document.getElementById('nomeConfirmacao').value;
+    if (!nome) return alert('Digite seu nome');
+    const lista = JSON.parse(localStorage.getItem('confirmados') || '[]');
+    lista.push(nome);
+    localStorage.setItem('confirmados', JSON.stringify(lista));
+    alert('Presença confirmada!');
   }
 
   function salvarRecado() {
     const nome = nomeRecado.value;
     const msg = msgRecado.value;
-    localStorage.setItem('recado', JSON.stringify({ nome, msg }));
-    renderRecado();
+    localStorage.setItem('recado', nome + ': ' + msg);
+    recadoSalvo.innerText = 'Recado salvo apenas neste navegador 💖';
   }
 
-  function renderRecado() {
-    const r = JSON.parse(localStorage.getItem('recado'));
-    if (r) meuRecado.innerHTML = `<p><strong>${r.nome}</strong>: ${r.msg}</p>`;
+  function selecionar(el) {
+    el.classList.toggle('selected');
   }
 
-  function confirmar() {
-    alert('Presença confirmada! 💖');
-  }
-
-  function renderGifts() {
-    gifts.forEach(g => {
-      const div = document.createElement('div');
-      div.className = 'gift';
-      div.innerText = g;
-      div.onclick = () => div.classList.add('selected');
-      document.getElementById('gifts').appendChild(div);
+  // ACESSO ADMIN OCULTO
+  if (window.location.hash === '#admin-sophie') {
+    show('admin');
+    const lista = JSON.parse(localStorage.getItem('confirmados') || '[]');
+    const ul = document.getElementById('listaConfirmados');
+    lista.forEach(n => {
+      const li = document.createElement('li');
+      li.textContent = n;
+      ul.appendChild(li);
     });
   }
-
-  renderRecado();
-  renderGifts();
 </script>
+
 </body>
 </html>
